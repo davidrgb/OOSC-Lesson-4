@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import controller.ShapeDemoListener;
+
 public class DrawingDemoPanel {
     
     private JFrame window;
@@ -35,7 +37,7 @@ public class DrawingDemoPanel {
     private JButton showAllButton = new JButton("Show All");
     private JButton showOrderButton = new JButton("Show Order");
     private JButton clearButton = new JButton("Clear");
-    private JButton exiButton = new JButton("Exit");
+    private JButton exitButton = new JButton("Exit");
 
     public DrawingDemoPanel(JFrame window) {
         this.window = window;
@@ -68,6 +70,7 @@ public class DrawingDemoPanel {
         shapeGroup.add(cirButton);
         shapeGroup.add(recButton);
         shapeGroup.add(triButton);
+        cirButton.setSelected(true);
 
         colorPanel.setBorder(BorderFactory.createTitledBorder("Color"));
         colorPanel.add(whiteColor);
@@ -78,6 +81,7 @@ public class DrawingDemoPanel {
         colorGroup.add(whiteColor);
         colorGroup.add(yellowColor);
         colorGroup.add(redColor);
+        whiteColor.setSelected(true);
 
         sizePanel.setBorder(BorderFactory.createTitledBorder("Size"));
         sizePanel.add(smallSize);
@@ -87,6 +91,7 @@ public class DrawingDemoPanel {
         sizeGroup.add(smallSize);
         sizeGroup.add(midSize);
         sizeGroup.add(largeSize);
+        smallSize.setSelected(true);
 
         buttonPanel.setBorder(BorderFactory.createTitledBorder("Actions"));
         buttonPanel.add(sortXButton);
@@ -94,7 +99,20 @@ public class DrawingDemoPanel {
         buttonPanel.add(showAllButton);
         buttonPanel.add(showOrderButton);
         buttonPanel.add(clearButton);
-        buttonPanel.add(exiButton);
+        buttonPanel.add(exitButton);
+
+        ShapeDemoListener listener = new ShapeDemoListener(this);
+        canvas.addMouseListener(listener);
+        clearButton.addActionListener(listener);
+        exitButton.addActionListener(listener);
+    }
+
+    public JFrame getWindow() {
+        return window;
+    }
+
+    public DrawingDemoCanvas getCanvas() {
+        return canvas;
     }
 
     public JRadioButton getCirButton() {
@@ -145,8 +163,8 @@ public class DrawingDemoPanel {
         return clearButton;
     }
 
-    public JButton getExiButton() {
-        return exiButton;
+    public JButton getExitButton() {
+        return exitButton;
     }
 
     public JRadioButton getWhiteColor() {
