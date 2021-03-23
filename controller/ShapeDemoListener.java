@@ -93,6 +93,7 @@ public class ShapeDemoListener implements MouseListener, ActionListener {
     public void actionPerformed(ActionEvent e) { 
         if (e.getSource() == panel.getClearButton()) {
             panel.getCanvas().getShapes().clear();
+            panel.getCanvas().setSingleStepIndex(-1);
             panel.getCanvas().repaint();
         } else if (e.getSource() == panel.getExitButton()) {
             JFrame window = panel.getWindow();
@@ -108,7 +109,7 @@ public class ShapeDemoListener implements MouseListener, ActionListener {
             panel.getCanvas().setSingleStepIndex(-1);
             panel.getCanvas().repaint();
         } else if (e.getSource() == panel.getSortXButton()) {
-            class SortX implements Comparator<IShapeDraw> {
+            /*class SortX implements Comparator<IShapeDraw> {
                 @Override
                 public int compare(IShapeDraw o1, IShapeDraw o2) {
                     Shape s1 = (Shape) o1;
@@ -118,7 +119,14 @@ public class ShapeDemoListener implements MouseListener, ActionListener {
                     else return 0;
                 }
             }
-            Collections.sort(panel.getCanvas().getShapes(), new SortX());
+            Collections.sort(panel.getCanvas().getShapes(), new SortX());*/
+            Collections.sort(panel.getCanvas().getShapes(), (o1, o2) -> {
+                Shape s1 = (Shape) o1;
+                Shape s2 = (Shape) o2;
+                if (s1.getX() < s2.getX()) return -1;
+                else if (s1.getX() > s2.getX()) return 1;
+                else return 0;
+            });
             panel.getCanvas().setSingleStepIndex(-1);
             panel.getCanvas().repaint();
         }
