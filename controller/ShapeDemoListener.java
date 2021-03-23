@@ -129,6 +129,16 @@ public class ShapeDemoListener implements MouseListener, ActionListener {
             });
             panel.getCanvas().setSingleStepIndex(-1);
             panel.getCanvas().repaint();
+        } else if (e.getSource() == panel.getSortYButton()) {
+            Collections.sort(panel.getCanvas().getShapes(), (o1, o2) -> {
+                Shape s1 = (Shape) o1;
+                Shape s2 = (Shape) o2;
+                if (s1.getY() < s2.getY()) return -1;
+                else if (s1.getY() > s2.getY()) return 1;
+                else return 0;
+            });
+            panel.getCanvas().setSingleStepIndex(-1);
+            panel.getCanvas().repaint();
         }
     }
     

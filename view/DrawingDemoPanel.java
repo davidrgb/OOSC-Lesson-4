@@ -108,6 +108,7 @@ public class DrawingDemoPanel {
         showOrderButton.addActionListener(listener);
         showAllButton.addActionListener(listener);
         sortXButton.addActionListener(listener);
+        sortYButton.addActionListener(listener);
     }
 
     public JFrame getWindow() {
