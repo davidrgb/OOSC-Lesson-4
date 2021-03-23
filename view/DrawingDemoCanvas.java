@@ -56,6 +56,10 @@ public class DrawingDemoCanvas extends JPanel {
         }
     }
 
+    public void setSingleStepIndex(int singleStepIndex) {
+        this.singleStepIndex = singleStepIndex;
+    }
+
     public ArrayList<IShapeDraw> getShapes() {
         return shapes;
     }

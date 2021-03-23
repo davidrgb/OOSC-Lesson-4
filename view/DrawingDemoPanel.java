@@ -106,6 +106,7 @@ public class DrawingDemoPanel {
         clearButton.addActionListener(listener);
         exitButton.addActionListener(listener);
         showOrderButton.addActionListener(listener);
+        showAllButton.addActionListener(listener);
     }
 
     public JFrame getWindow() {
