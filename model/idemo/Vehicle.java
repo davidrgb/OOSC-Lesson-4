@@ -1,11 +1,16 @@
 package model.idemo;
 
-public abstract class Vehicle implements ISound {
+import java.awt.Rectangle;
+
+import java.awt.image.BufferedImage;
+
+public abstract class Vehicle implements ISound, IRender {
     
     private int x;
     private int y;
     private String make;
     private double price;
+    private BufferedImage image;
 
     public Vehicle(int x, int y, String make, double price) {
         this.x = x;
@@ -30,9 +35,28 @@ public abstract class Vehicle implements ISound {
         return price;
     }
 
+    public BufferedImage getImage() {
+        return image;
+    }
+    
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Vehicle at (" + x + ", " + y + ") " +
             make  + " $" + price;
+    }
+
+    @Override
+    public Rectangle getBoundingBox() {
+        return new Rectangle(x, y, image.getWidth(), image.getHeight());
+    }
+
+    @Override
+    public void translate(int dx, int dy) {
+        x += dx;
+        y += dy;
     }
 }
