@@ -99,6 +99,9 @@ public class ShapeDemoListener implements MouseListener, ActionListener {
             menu.init();
             window.pack();
             window.revalidate();
+        } else if (e.getSource() == panel.getShowOrderButton()) {
+            panel.getCanvas().incrementSingleStepIndex();
+            panel.getCanvas().repaint();
         }
     }
     
