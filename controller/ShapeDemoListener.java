@@ -38,6 +38,7 @@ public class ShapeDemoListener implements MouseListener, ActionListener {
         IShapeDraw shape = getShape(e.getX(), e.getY(), color, size, filled);
         panel.getCanvas().getShapes().add(shape);
         panel.getCanvas().repaint();
+        panel.getCanvas().setSingleStepIndex(-1);
     }
 
     private Color getColor() {
